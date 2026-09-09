@@ -347,7 +347,7 @@ export function CreateBaseDialog(props: {
 
 // ── add data source (Cherry Studio style: file → OS picker, dir/url → dialogs) ──
 
-const FILE_ACCEPT = '.txt,.md,.markdown,.mdx,.csv,.html,.htm,.json,.log,.pdf,.docx,.doc,.pptx,.ppt,.xlsx,.xls,.epub'
+const FILE_ACCEPT = '.txt,.md,.markdown,.mdx,.csv,.html,.htm,.json,.log,.pdf,.docx,.doc,.pptx,.ppt,.xlsx,.xls,.epub,.sh,.bash,.zsh,.fish,.ksh,.csh,.py,.rb,.pl,.pm,.php,.lua,.bat,.cmd,.ps1,.psd1,.psm1,.vbs,.awk,.tcl,.js,.mjs,.cjs,.jsx,.ts,.tsx,.go,.rs,.java,.kt,.kts,.scala,.c,.h,.cpp,.cc,.cxx,.hpp,.cs,.swift,.groovy,.dart,.r,.sql,.yaml,.yml,.toml,.ini,.cfg,.conf,.properties,.xml,.out,.err,.bak'
 const MAX_FILES = 20
 /**
  * Upload cap: the JSON upload API limits bodies to 32MB, so a base64 payload

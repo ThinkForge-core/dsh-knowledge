@@ -12,13 +12,28 @@ import { fileURLToPath } from 'node:url'
 
 /**
  * The formats a knowledge import accepts (Cherry's `knowledgeSupportedFileExts`
- * plus json/log, which we decode as plain text). Anything else — binaries,
- * images, archives — is rejected at add time instead of being decoded into
- * garbage text (Cherry's directory scan skips unsupported extensions silently).
+ * plus json/log and a broad set of source-code/script/config/log extensions,
+ * which we decode as plain text). Anything else — binaries, images, archives —
+ * is rejected at add time instead of being decoded into garbage text (Cherry's
+ * directory scan skips unsupported extensions silently). Every extension here
+ * is treated as text by the parser fallback, so this whitelist doubles as the
+ * anti-garbage guard: do not widen it with binary-ish extensions.
  */
 export const SUPPORTED_DOCUMENT_EXTENSIONS = [
+  // documents (Cherry's knowledgeSupportedFileExts)
   'txt', 'md', 'markdown', 'mdx', 'csv', 'html', 'htm', 'json', 'log',
   'pdf', 'docx', 'doc', 'pptx', 'ppt', 'xlsx', 'xls', 'epub',
+  // shell & scripting
+  'sh', 'bash', 'zsh', 'fish', 'ksh', 'csh', 'py', 'rb', 'pl', 'pm',
+  'php', 'lua', 'bat', 'cmd', 'ps1', 'psd1', 'psm1', 'vbs', 'awk', 'tcl',
+  // source code
+  'js', 'mjs', 'cjs', 'jsx', 'ts', 'tsx', 'go', 'rs', 'java', 'kt', 'kts',
+  'scala', 'c', 'h', 'cpp', 'cc', 'cxx', 'hpp', 'cs', 'swift', 'groovy',
+  'dart', 'r', 'sql',
+  // config / data / markup
+  'yaml', 'yml', 'toml', 'ini', 'cfg', 'conf', 'properties', 'xml',
+  // logs & other plain-text dumps
+  'out', 'err', 'bak',
 ] as const
 
 /** Lowercased extension of a file name ('' when none). */
